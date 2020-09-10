@@ -12,6 +12,9 @@
 
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+
+		<!-- Font awesome for chalkboard -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	</head>
 	<body>
 		<div class="reveal">
@@ -32,14 +35,16 @@
 					</section>
 					<section>
 						<h2>Definição de Classes</h2>
-						<pre><code data-line-numbers="1|4|1,4,8-11|2-3|5-6" data-trim>
-public class Ponto {
+						<pre><code data-line-numbers="1|5|1,5,8-11|2-3|5-6|7-8" data-trim>
+public class Point {
 	private float x;
 	private float y;
-	public Ponto(float x, float y) {
+	// Construtor
+	public Point(float x, float y) {
 		this.x = x;
 		this.y = y;
 	}
+	// Setters e getters
 	public void setX(float x) { this.x = x; }
 	public void setY(float y) { this.y = y; }
 	public float getX() { return x; }
@@ -48,6 +53,79 @@ public class Ponto {
 						</code></pre>
 					</section>
 				</section>
+				<section>
+					<h2>Lendo dados da entrada padrão</h2>
+					<pre><code data-trim>
+						import java.util.Scanner;
+
+						// mais código (...)
+
+						Scanner input = new Scanner(System.in);
+						int a = input.nextInt();
+						double b = input.nextDouble();
+						String s = input.nextLine();
+						// etc....
+					</code></pre>
+				</section>
+				<section>
+					<section>
+						<h3>Tipos primitivos x Tipos referência</h3>
+						<p class="fragment">Tipos primitivos <em>(byte, char, short, int, long, float, double e boolean)</em> são inicializados
+							automaticamente com o valor <b>0</b> ou <b>false</b>, no caso do <em>boolean</em></p>
+						<p class="fragment">Tipos referência, como a classe <em>Account</em>, ou tipos objetos, são inicializados com o valor
+							<b>null</b>.</p>
+						<p class="fragment">Por quê?</p>
+					</section>
+					<section>
+						<h3>Tipos primitivos x Tipos referência</h3>
+						<img data-src="images/tipo_referencia.png" width="80%" height="80%">
+					</section>
+				</section>
+				<section>
+					<section>
+						<h3>Vamos trabalhar!</h3>
+						<ol>
+							<li>De volta à classe <em>Account</em>, acrescentar uma <b>variável de instância</b> chamada <em>balance</em> (saldo), de tipo <em>double</em>.</li>
+							<li>Modificar o construtor para receber um parâmetro de tipo <em>double</em> chamado também de <em>balance</em>. Atribua o valor de <em>balance</em> à
+								variável de instância <em>balance</em> da classe account. (Como lidar com a sobreposição de nomes?)</li>
+							<li>Agora modifique o código de forma que só seja possível atribuir o valor a <em>balance</em> caso o valor passado por parâmetro seja <b>maior</b>
+								do que <b>0</b>.</li>
+						</ol>
+						<p></p>
+					</section>
+					<section>
+						<h3>Continuando...</h3>
+						<ol>
+							<li>Agora crie um método <em>getBalance</em> para retornar o valor do saldo. (variável <em>balance</em>)</li>
+							<li>Por fim, crie um método <em>deposit</em> que efetuará um depósito na conta. Este método recebe um valor <em>double</em>
+							por parâmetro e "somará" ao valor do saldo corrente, caso seja maior do que <b>0</b>.</li>
+							<li>Atualize a sua classe de teste (a que tem o método <em>main</em> para testar as novas funcionalidades.</li>
+						</ol>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h3>Mais exercícios</h3>
+						<b>Classe Account modificada</b><br>
+						<p>Modifique a classe <em>Account</em> para fornecer um método chamado <em>withdraw</em> que retira dinheiro
+							de uma <em>Account</em>. Assegure que o valor de débito não exceda o saldo da conta. Se exceder, o saldo deve ser deixado inalterado
+							e o método deve imprimir uma mensagem que indica "Valor de débito
+							excedeu o saldo da conta". Modifique a classe <em>AccountTest</em> para testar o método <em>withdraw</em>.</p>
+					</section>
+					<section>
+						<b>Classe Invoice</b><br>
+						<p style="font-size: .7em">Crie uma classe chamada <em>Invoice</em> para que uma loja de suprimentos de informática a utilize para representar uma
+							fatura de um item vendido nela. Uma <em>Invoice</em> (fatura) deve incluir quatro partes das informações como variáveis de instância — o
+							número (tipo <em>String</em>), a descrição (tipo <em>String</em>), a quantidade comprada de um item (tipo <em>int</em>) e o preço por item (<em>double</em>). Sua
+							classe deve ter um construtor que inicializa as quatro variáveis de instância.</p><p style="font-size: .7em">Forneça um método set e um get para cada variável de instância.
+							Além disso, forneça um método chamado <em>getInvoiceAmount</em> que calcula o valor de fatura (isto é, multiplica a quantidade pelo
+						preço por item) e depois retorna esse valor como double.</p> <p style="font-size: .7em">Tanto no construtor, quanto nos métodos set, se a quantidade não for positiva, ela deve ser configurada como 0. Se o preço
+							por item não for positivo, ele deve ser configurado como 0.0. Escreva um aplicativo de teste chamado <em>InvoiceTest</em> que demonstra as
+							capacidades da classe <em>Invoice</em>.</p>
+					</section>
+				</section>
+
+
 			</div>
 		</div>
 
@@ -55,6 +133,8 @@ public class Ponto {
 		<script src="plugin/notes/notes.js"></script>
 		<script src="plugin/markdown/markdown.js"></script>
 		<script src="plugin/highlight/highlight.js"></script>
+		<script src="plugin/chalkboard/plugin.js"></script>
+
 		<script>
 			// More info about initialization & config:
 			// - https://revealjs.com/initialization/
@@ -63,7 +143,7 @@ public class Ponto {
 				hash: true,
 
 				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealChalkboard ]
 			});
 		</script>
 	</body>
